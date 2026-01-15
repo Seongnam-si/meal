@@ -54,41 +54,43 @@ export default function Home() {
               price={product.price}
               current={product.current}
               limit={product.limit}
-              image={product.image}
+
               isSoldout={isSoldout(product)}
             />
           ))
         }  
       </section>
-      <div className="mt-8 flex justify-center gap-2">
-        <button
-          disabled={currentPage === 1}
-          onClick={() => setCurrentPage((p) => p - 1)}
-          className="rounded px-3 py-1 text-sm border disabled:opacity-30"
-        >
-          이전
-        </button>
-        {Array.from({ length: totalPages }).map((_, i) => {
-          const page = i + 1;
-          return (
-            <button
-              key={page}
-              onClick={() => setCurrentPage(page)}
-              className={`rounded px-3 py-1 text-sm border
-                ${page === currentPage ? "bg-gray-200" : ""}
-              `}
-            >
-              {page}
-            </button>
-          );
-        })}
-        <button
-          disabled={currentPage === totalPages}
-          onClick={() => setCurrentPage((p) => p + 1)}
-          className="rounded px-3 py-1 text-sm border disabled:opacity-30"
-        >
-          다음
-        </button>
+      <div className="mt-8 overflow-x-auto">
+        <div className="flex justify-center gap-2 min-w-max px-2">
+          <button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage((p) => p - 1)}
+            className="rounded px-3 py-1 text-sm border disabled:opacity-30"
+          >
+            이전
+          </button>
+          {Array.from({ length: totalPages }).map((_, i) => {
+            const page = i + 1;
+            return (
+              <button
+                key={page}
+                onClick={() => setCurrentPage(page)}
+                className={`rounded px-3 py-1 text-sm border
+                  ${page === currentPage ? "bg-gray-200" : ""}
+                `}
+              >
+                {page}
+              </button>
+            );
+          })}
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage((p) => p + 1)}
+            className="rounded px-3 py-1 text-sm border disabled:opacity-30"
+          >
+            다음
+          </button>
+        </div>
       </div>
     </main>
   );
