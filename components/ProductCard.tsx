@@ -19,22 +19,35 @@ const ProductCard = ({
 	const isAlmostSoldout = !isSoldout && current / limit >= 0.9;
 
 	return (
-		<div className="flex gap-4 rounded-xl border border-gray-200 p-4 bg-white items-center">
-      <div className="h-24 w-24 flex-shrink-0 rounded-lg bg-gray-100 flex items-center justify-center text-sm text-gray-400">
-        Image
-      </div>
-			<div className="flex flex-1 flex-col gap-2">
-				<h3 className="text-lg font-semibold">
-					{index}. {name}
-				</h3>
-				<p className="font-medium">
-					{price}
-				</p>
+		<div
+			className="
+				flex flex-col gap-4 p-4 bg-white 
+				rounded-xl border border-gray-200
+				md:flex-row md:items-center
+			"
+		>
+			<div className="md:w-[300px] flex gap-4">
+				<div
+					className="
+						h-20 w-20 flex flex-shrink-0
+						rounded-lg bg-gray-100 items-center justify-center
+						text-sm text-gray-400
+					"
+				>
+					Image
+				</div>
+				<div className="flex flex-col gap-2 justify-center">
+					<h3 className="text-base font-semibold">
+						{index}. {name}
+					</h3>
+					<p className="text-sm font-medium">
+						{price}
+					</p>
+				</div>
 			</div>
-			<div className="relative flex flex-1 items-center">
-				<div className="w-full">
+				<div className="relative md:flex-1 md:px-6">
 					{isAlmostSoldout && (
-						<span className="absolute bottom-6 right-0 text-xs font-semibold text-red-500">
+						<span className="block text-right mb-2 text-xs font-semibold text-red-500">
 							품절 임박!
 						</span>
 					)}
@@ -46,15 +59,14 @@ const ProductCard = ({
 							style={{ width: `${progressBar}%` }}
 						/>
 					</div>
-					<span className="absolute top-6 right-0 text-xs text-gray-500">
+					<span className="mt-2 block text-right text-xs text-gray-500">
 						{current}/{limit}
 					</span>
 				</div>
-			</div>
-			<div className="flex flex-1 items-center justify-center">
+			<div className="md:w-36">
 				<button
 					disabled={isSoldout}
-					className={`h-9 w-32 rounded-md border text-sm font-medium transition
+					className={`w-full h-11 rounded-md text-sm font-medium transition
             ${
               isSoldout
                 ? "bg-gray-200 text-gray-400 cursor-not-allowed"
